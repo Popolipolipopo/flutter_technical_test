@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test/providers/login_model.dart';
-import 'package:flutter_technical_test/providers/navbar_model.dart';
+import 'package:flutter_technical_test/models/login_model.dart';
+import 'package:flutter_technical_test/models/navbar_model.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -13,8 +13,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: "example@mail.com");
+  final _passwordController = TextEditingController(text: "1234");
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                       backgroundColor: Colors.green,
                     )
                   );
-                  navbar.currentTab = 1;
+                  navbar.setCurrentTab(1);
                 }
               },
               child: const Text('Sign In'),

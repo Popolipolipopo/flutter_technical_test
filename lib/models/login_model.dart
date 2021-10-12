@@ -4,6 +4,10 @@ import 'package:dio/dio.dart';
 class LoginModel extends ChangeNotifier {
   late String _username, _password, _token;
 
+  bool _logged = false;
+
+  bool get logged => _logged;
+
   String get username => _username;
 
   String get password => _password;
@@ -27,11 +31,14 @@ class LoginModel extends ChangeNotifier {
 
   Future<bool> signIn() async {
     try {
-      var response = await Dio().get('https://reqres.in/api/login');
-      print(response);
+      var response = await Dio().post("https://reqres.in/api/login", data: {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+      });
+      this._logged = true;
+      this._token = response.data["token"];
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
   }
