@@ -34,6 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Consumer<NavbarModel>(
         builder: (context, navbar, child) {
           return Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              // leading: Icon(Icons.arrow_back),
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+            ),
             body: navbar.currentScreen,
             bottomNavigationBar: BottomNavigationBar(
                 items: const [

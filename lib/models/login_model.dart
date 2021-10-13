@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 class LoginModel extends ChangeNotifier {
   late String _username, _password, _token;
 
+  bool _obscure = true;
+
   bool _logged = false;
 
   bool get logged => _logged;
@@ -13,6 +15,8 @@ class LoginModel extends ChangeNotifier {
   String get password => _password;
 
   String get token => _token;
+
+  bool get obscure => _obscure;
 
   set username(String username) {
     this._username = username;
@@ -26,6 +30,11 @@ class LoginModel extends ChangeNotifier {
 
   set token(String username) {
     this._token = username;
+    notifyListeners();
+  }
+
+  set obscure(bool obscure) {
+    this._obscure = obscure;
     notifyListeners();
   }
 

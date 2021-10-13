@@ -10,7 +10,7 @@ class DogModel extends ChangeNotifier {
 
   void fetchDogList() async {
     try {
-      var response = await Dio().get("https://api.thedogapi.com/v1/breeds?limit=10", options: Options(
+      var response = await Dio().get("https://api.thedogapi.com/v1/breeds?limit=30", options: Options(
         headers: {
           "x-api-key": "cef59342-8afa-49e8-8de1-08a0eac85329"
         }
@@ -31,16 +31,30 @@ class DogItem {
   final int id;
   final String name;
   final String imageUrl;
-  final String description;
+  final String temperament;
+  final String lifeSpan;
+  final String height;
+  final String weight;
 
-  DogItem({required this.id, required this.name, required this.imageUrl, required this.description});
+  DogItem({
+    required this.id,
+    required this.name,
+    required this.imageUrl,
+    required this.temperament,
+    required this.lifeSpan,
+    required this.height,
+    required this.weight
+  });
 
   factory DogItem.fromJson(Map<String, dynamic> json) {
     return DogItem(
       id: json['id'],
       name: json['name'],
       imageUrl: json['image']['url'],
-      description: json['temperament'],
+      temperament: json['temperament'],
+      lifeSpan: json['life_span'] ?? "Unknown",
+      height: json['height']['metric'],
+      weight: json['weight']['metric'],
     );
   }
 }
