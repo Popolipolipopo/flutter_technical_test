@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (!navbar.setCurrentTab(index)) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text("You must be logged in to access the dog list"),
+                          content: Text("You must be logged in to access the dog list", textAlign: TextAlign.center),
                           backgroundColor: Colors.red,
                         )
                     );

@@ -47,11 +47,17 @@ class DogItem {
   });
 
   factory DogItem.fromJson(Map<String, dynamic> json) {
-    return DogItem(
+    List<String> elements = json["temperament"].split(", ");
+    List<String> finalValues = [];
+
+    for (int i = 3; i < elements.length; i++) {
+      finalValues.add(elements[i]);
+    }
+      return DogItem(
       id: json['id'],
       name: json['name'],
       imageUrl: json['image']['url'],
-      temperament: json['temperament'],
+      temperament: finalValues.join(", "),
       lifeSpan: json['life_span'] ?? "Unknown",
       height: json['height']['metric'],
       weight: json['weight']['metric'],

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test/models/dog_model.dart';
 import 'package:provider/provider.dart';
@@ -20,25 +21,69 @@ class DogList extends StatelessWidget {
                       return Container(
                         child: Column(
                           children: [
-                            Image.network(currentItem.imageUrl),
-                            Text(currentItem.lifeSpan, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                            Text(currentItem.temperament, style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 11),),
-                            Text(currentItem.height, style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 11),),
-                            Text(currentItem.weight, style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 11),),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.4,
+                              child: FadeInImage.assetNetwork(
+                                fit: BoxFit.cover,
+                                placeholder: 'assets/images/dog_silhouette_placeholder.svg.png',
+                                image: currentItem.imageUrl,
+                              ),
+                            ),
+                            Center(
+                              child : Card(
+                                  elevation: 10,
+                                  margin: EdgeInsets.all(10),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Container(
+                                          width: MediaQuery.of(context).size.width * 0.8,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: const [
+                                                  Text("Life span :", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                                  Text("Temperament :", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,),),
+                                                  Text("Height :", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                                  Text("Weight :", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                                ],
+                                              ),
+                                              VerticalDivider(),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(currentItem.lifeSpan, style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15),),
+                                                  Text(currentItem.temperament, style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15,)),
+                                                  Text(currentItem.height + "cm", style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15),),
+                                                  Text(currentItem.weight + "kg", style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15),),
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                      )
+                                  )
+                              ),
+                            )
                           ],
                         ),
                       );
                     });
                   },
-              child: Card(
-                elevation: 6,
-                  margin: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Image.network(currentItem.imageUrl),
-                    Text(currentItem.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                  ],
-                ),
+                  child: Card(
+                    elevation: 6,
+                    margin: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/dog_silhouette_placeholder.svg.png',
+                          image: currentItem.imageUrl,
+                        ),
+                        Text(currentItem.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                      ],
+                    ),
                   )
               )
           );

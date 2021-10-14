@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock, color: Colors.black,),
                     suffixIcon: IconButton(
-                      icon: Icon(signIn.obscure ? Icons.visibility : Icons.visibility_off, color: Colors.black,),
+                      icon: Icon(signIn.obscure ? Icons.visibility_off : Icons.visibility, color: Colors.black,),
                     onPressed: () {
                       signIn.obscure = !signIn.obscure;
                     },),
@@ -150,7 +150,7 @@ class _LoginState extends State<Login> {
                   if (await signIn.signIn()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text("Successfully connected"),
+                          content: Text("Successfully connected", textAlign: TextAlign.center),
                           backgroundColor: Colors.green,
                         )
                     );
@@ -173,7 +173,7 @@ class _LoginState extends State<Login> {
           floating: false,
           expandedHeight: screenHeight / 4,
           //304,
-          backgroundColor: const Color(0xFFdccdb4),
+          backgroundColor: const Color(0xFFFFFFFF),
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,
             background:
