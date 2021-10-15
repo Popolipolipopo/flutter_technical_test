@@ -77,9 +77,14 @@ class DogList extends StatelessWidget {
                     margin: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/dog_silhouette_placeholder.svg.png',
-                          image: currentItem.imageUrl,
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: FadeInImage.assetNetwork(
+                            fit: BoxFit.cover,
+                            placeholder: 'assets/images/dog_silhouette_placeholder.svg.png',
+                            image: currentItem.imageUrl,
+                          ),
                         ),
                         Text(currentItem.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
                       ],

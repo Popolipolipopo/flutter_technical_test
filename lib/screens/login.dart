@@ -5,7 +5,10 @@ import 'package:flutter_technical_test/models/navbar_model.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  final String email;
+  final String password;
+
+  const Login({Key? key, this.email = "example@mail.com", this.password = "1234"}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -13,8 +16,15 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: "example@mail.com");
-  final _passwordController = TextEditingController(text: "1234");
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    _emailController.text = this.widget.email;
+    _passwordController.text = this.widget.password;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,43 +38,6 @@ class _LoginState extends State<Login> {
         .of(context)
         .size
         .height;
-
-    /*return Stack(
-      children: [
-        Positioned(
-          top: 0,
-          child: Container(
-            width: screenWidth,
-            height: screenHeight / 3,
-            decoration:  const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/dog_cover.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-            top: screenHeight / 3 - 10,
-            child: Container(
-              width: screenWidth,
-              height: 3 * screenHeight / 4,
-              decoration: const BoxDecoration(
-                  color: Color(0xfffbfbfb),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0),
-                  )
-              ),
-              child: ListView(
-                children: [
-
-                ],
-              ),
-            )
-        )
-      ],
-    );*/
 
     final widgetList = [
       const Padding(padding: EdgeInsets.all(10)),

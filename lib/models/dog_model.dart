@@ -8,7 +8,7 @@ class DogModel extends ChangeNotifier {
     fetchDogList();
   }
 
-  void fetchDogList() async {
+  Future<void> fetchDogList() async {
     try {
       var response = await Dio().get("https://api.thedogapi.com/v1/breeds?limit=30", options: Options(
         headers: {

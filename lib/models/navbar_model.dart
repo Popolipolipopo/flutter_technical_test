@@ -6,7 +6,7 @@ import 'login_model.dart';
 
 class NavbarModel extends ChangeNotifier {
   int _currentTab = 0;
-  List<Widget> _screens = [Login(), DogList()];
+  final List<Widget> _screens = [Login(), DogList()];
   late LoginModel _login;
 
   bool setCurrentTab(int tab) {
